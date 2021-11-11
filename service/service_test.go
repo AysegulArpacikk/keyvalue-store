@@ -67,7 +67,7 @@ func Test_ShouldServiceNotGetKeyValue(t *testing.T) {
 	keyValueRepository := repository.NewKeyValueStoreRepository(map[string]string{})
 	keyValueService := NewService(keyValueRepository)
 
-	_, err := http.NewRequest("GET", "/get", nil)
+	_, err := http.NewRequest("GET", "/get", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}

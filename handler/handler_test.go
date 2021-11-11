@@ -1,6 +1,7 @@
 package handler_test
 
 import (
+	"io"
 	"log"
 	"net/http"
 	"net/http/httptest"
@@ -22,7 +23,7 @@ func Test_ShouldSetNewKeyValue(t *testing.T) {
 
 	server := httptest.NewServer(keyValueHandler)
 
-	request, err := http.NewRequest("POST", "/set", nil)
+	request, err := http.NewRequest("POST", "/set", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -49,7 +50,7 @@ func Test_ShouldNotSetNewKeyValueBecauseKeyValueAlreadyExist(t *testing.T) {
 	server := httptest.NewServer(keyValueHandler)
 	defer server.Close()
 
-	request, err := http.NewRequest("POST", "/set", nil)
+	request, err := http.NewRequest("POST", "/set", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -72,7 +73,7 @@ func Test_ShouldGetKeyValue(t *testing.T) {
 
 	server := httptest.NewServer(keyValueHandler)
 
-	request, err := http.NewRequest("GET", "/get", nil)
+	request, err := http.NewRequest("GET", "/get", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -100,7 +101,7 @@ func Test_ShouldNotGetKeyValueBecauseKeyValueNotFound(t *testing.T) {
 	server := httptest.NewServer(keyValueHandler)
 	defer server.Close()
 
-	request, err := http.NewRequest("GET", "/get", nil)
+	request, err := http.NewRequest("GET", "/get", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}
