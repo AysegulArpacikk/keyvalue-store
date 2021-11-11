@@ -9,3 +9,13 @@
 2021/11/12 01:23:38 '{"den":"izli"}' data writed to file 'tmp/1636669418-data.json' file
 2021/11/12 01:24:09 GET		/get?key=den		127.0.0.1:55144		47.309µs
 2021/11/12 01:37:39 GET		/get?key=den		127.0.0.1:55826		50.067µs
+2021/11/12 01:56:45 GET		/get?key=den		127.0.0.1:56778		24.918µs
+2021/11/12 01:56:58 http: superfluous response.WriteHeader call from ys-keyvalue-store/handler.(*handler).SetKeyValueHandler (handler.go:76)
+2021/11/12 01:56:58 GET		/set?key=yemek&value=sepeti		127.0.0.1:56790		102.623µs
+2021/11/12 01:57:35 'tmp/1636671455-data.json' file created
+2021/11/12 01:57:35 '{"den":"izli","yemek":"sepeti"}' data writed to file 'tmp/1636671455-data.json' file
+2021/11/12 01:58:00 GET		/get?key=yemek		127.0.0.1:56834		31.756µs
+2021/11/12 01:58:02 http: superfluous response.WriteHeader call from ys-keyvalue-store/handler.(*handler).SetKeyValueHandler (handler.go:76)
+2021/11/12 01:58:02 GET		/set?key=yemek&value=sepeti		127.0.0.1:56838		70.061µs
+2021/11/12 01:58:13 GET		/get?key=yemek		127.0.0.1:56846		38.072µs
+2021/11/12 01:58:21 GET		/get?key=den		127.0.0.1:56854		106.392µs

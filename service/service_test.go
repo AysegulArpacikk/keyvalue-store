@@ -1,6 +1,7 @@
 package service
 
 import (
+	"io"
 	"log"
 	"net/http"
 	"testing"
@@ -16,7 +17,7 @@ func Test_ShouldServiceSetNewKeyValue(t *testing.T) {
 	keyValueRepository := repository.NewKeyValueStoreRepository(map[string]string{})
 	keyValueService := NewService(keyValueRepository)
 
-	_, err := http.NewRequest("SET", "/set", nil)
+	_, err := http.NewRequest("SET", "/set", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -33,7 +34,7 @@ func Test_ShouldServiceNotSetNewKeyValue(t *testing.T) {
 	keyValueRepository := repository.NewKeyValueStoreRepository(map[string]string{testKey: testValue})
 	keyValueService := NewService(keyValueRepository)
 
-	_, err := http.NewRequest("SET", "/set", nil)
+	_, err := http.NewRequest("SET", "/set", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -48,7 +49,7 @@ func Test_ShouldServiceGetKeyValue(t *testing.T) {
 	keyValueRepository := repository.NewKeyValueStoreRepository(map[string]string{testKey: testValue})
 	keyValueService := NewService(keyValueRepository)
 
-	_, err := http.NewRequest("GET", "/get", nil)
+	_, err := http.NewRequest("GET", "/get", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}

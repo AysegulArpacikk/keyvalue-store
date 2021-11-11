@@ -3,7 +3,7 @@ package repository
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"os"
 	"strconv"
@@ -48,7 +48,7 @@ func (k *KeyValueStore) LoadKeyValueStoreToMemory(file string) error {
 	fmt.Printf("Successfully Opened '%s'", file)
 	defer jsonFile.Close()
 
-	byteValue, _ := ioutil.ReadAll(jsonFile)
+	byteValue, _ := io.ReadAll(jsonFile)
 
 	err = json.Unmarshal(byteValue, &k.store)
 	if err != nil {
