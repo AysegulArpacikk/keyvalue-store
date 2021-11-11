@@ -1,0 +1,1 @@
+web: ys-keyvalue-store
