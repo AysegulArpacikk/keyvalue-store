@@ -8,3 +8,4 @@
 2021/11/12 01:23:38 'tmp/1636669418-data.json' file created
 2021/11/12 01:23:38 '{"den":"izli"}' data writed to file 'tmp/1636669418-data.json' file
 2021/11/12 01:24:09 GET		/get?key=den		127.0.0.1:55144		47.309µs
+2021/11/12 01:37:39 GET		/get?key=den		127.0.0.1:55826		50.067µs

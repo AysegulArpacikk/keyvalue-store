@@ -1,0 +1,61 @@
+image: golang:alpine
+stages:
+  - build
+  - lint
+  - test
+  - deploy
+
+build:
+  stage: build
+  extends: .go-cache
+  before_script:
+    - export $(cat .gitlab-ci-secrets | xargs)
+  script:
+    - apk add --no-progress --no-cache git
+    - export GOPRIVATE=${CI_SERVER_HOST}
+    - git config --global url.https://gitlab-ci-token:${CI_JOB_TOKEN}@${CI_SERVER_HOST}.insteadOf https://${CI_SERVER_HOST}
+    - go build
+  except:
+    - triggers
+  artifacts:
+    paths:
+      - ys-golang
+
+deploy:
+  stage: deploy
+  image: ruby:latest
+  before_script:
+    - gem install dpl
+  script:
+    - dpl --provider=heroku --app=$YS_GOLANG_PRODUCTION --api-key=$HEROKU_API_KEY
+  only:
+    - main
+
+lint:
+  image: golangci/golangci-lint
+  stage: lint
+  extends: .go-cache
+  script:
+    - export GOPRIVATE=${CI_SERVER_HOST}
+    - golangci-lint run -c .golangci.yml -v --timeout 5m
+  except:
+    - triggers
+
+test:
+  stage: test
+  extends: .go-cache
+  script:
+    - CGO_ENABLED=0 go test -v ./...
+  only:
+    - main
+  except:
+    - triggers
+
+.go-cache:
+  variables:
+    GOPATH: $CI_PROJECT_DIR/.go
+  before_script:
+    - mkdir -p .go
+  cache:
+    paths:
+      - .go/pkg/mod
