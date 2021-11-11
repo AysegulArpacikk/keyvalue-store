@@ -28,8 +28,8 @@ deploy:
     - gem install dpl
   script:
     - dpl --provider=heroku --app=$YS_GOLANG_PRODUCTION --api-key=$HEROKU_API_KEY
-  only:
-    - main
+#  only:
+#    - main
 
 lint:
   image: golangci/golangci-lint
