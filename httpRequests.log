@@ -1,0 +1,10 @@
+2021/11/12 01:21:13 http: superfluous response.WriteHeader call from ys-keyvalue-store/handler.(*handler).SetKeyValueHandler (handler.go:76)
+2021/11/12 01:21:13 GET		/set?key=den&value=izli		127.0.0.1:54994		252.859µs
+2021/11/12 01:21:24 GET		/get?key=den		127.0.0.1:55008		12.35µs
+2021/11/12 01:21:42 http: superfluous response.WriteHeader call from ys-keyvalue-store/handler.(*handler).SetKeyValueHandler (handler.go:76)
+2021/11/12 01:21:42 GET		/set?key=den&value=izli		127.0.0.1:55022		211.896µs
+2021/11/12 01:22:38 'tmp/1636669358-data.json' file created
+2021/11/12 01:22:38 '{"den":"izli"}' data writed to file 'tmp/1636669358-data.json' file
+2021/11/12 01:23:38 'tmp/1636669418-data.json' file created
+2021/11/12 01:23:38 '{"den":"izli"}' data writed to file 'tmp/1636669418-data.json' file
+2021/11/12 01:24:09 GET		/get?key=den		127.0.0.1:55144		47.309µs
