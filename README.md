@@ -29,12 +29,12 @@ make run
 ```
 
 ### For create a new key-value to in memory:
-Use this command on terminal: `curl -X POST 'http://localhost:8080/api/keyValues?key={keyData}&value={valueData}'`
-If you want to use the browser or Postman, you can go to the following address: `http://localhost:8080/api/keyValues?key={keyData}&value={valueData}`
+Use this command on terminal: `curl -X POST 'http://localhost:8080/api/keyValues?key=keyData&value=valueData'`
+If you want to use the browser or Postman, you can go to the following address: `http://localhost:8080/api/keyValues?key=keyData&value=valueData`
 
 ### For get a specific data from memory:
-Use this command on terminal: `curl 'http://localhost:8080/api/key/:keyData'`
-If you want to use the browser or Postman, you can go to the following address: `http://localhost:8080/api/key/:keyData`
+Use this command on terminal: `curl 'http://localhost:8080/api/key/keyData'`
+If you want to use the browser or Postman, you can go to the following address: `http://localhost:8080/api/key/keyData`
 
 Run tests
 ```bash
