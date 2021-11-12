@@ -2,6 +2,7 @@ package service
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"strings"
@@ -71,7 +72,7 @@ func (s *service) LoadKeyValueStoreToMemory() {
 		}
 	}
 
-	files, _ := os.ReadDir("tmp/")
+	files, _ := ioutil.ReadDir("tmp/") //nolint
 	if len(files) > 0 {
 		for _, file := range files {
 			fileName, err := os.Stat("tmp/" + file.Name())

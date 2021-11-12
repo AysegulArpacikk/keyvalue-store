@@ -48,7 +48,7 @@ func (k *KeyValueStore) LoadKeyValueStoreToMemory(file string) error {
 	fmt.Printf("Successfully Opened '%s'", file)
 	defer jsonFile.Close()
 
-	byteValue, _ := ioutil.ReadAll(jsonFile)
+	byteValue, _ := ioutil.ReadAll(jsonFile) //nolint
 
 	err = json.Unmarshal(byteValue, &k.store)
 	if err != nil {
