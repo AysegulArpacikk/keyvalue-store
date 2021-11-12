@@ -27,8 +27,7 @@ deploy:
   before_script:
     - gem install dpl
   script:
-    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/ys-keyvalue-store.git
-    - git push -f heroku master
+    - dpl --provider=heroku --app=$ys_keyvalue_store --api-key=$HEROKU_API_KEY
 
 lint:
   image: golangci/golangci-lint
