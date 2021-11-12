@@ -10,8 +10,8 @@ stopped and reopened, it writes the data in the last saved file back to the memo
 
 | Method | Route | Request body | Description
 | --- | --- | --- | --- |
-| /get | `GET` |     |  Gets the desired key-value from memory. |
-| /set | `POST` | {"key1":"value1", "key2":"value2"} | Creates new key-value in memory. |
+| /api/key/:key | `GET` |     |  Gets the desired key-value from memory. |
+| /api/keyValues | `POST` | {"key1":"value1", "key2":"value2"} | Creates new key-value in memory. |
 
 ## Installation
 If golang is not installed on your computer, first install go from this link: `https://golang.org/doc/install`
@@ -29,12 +29,12 @@ make run
 ```
 
 ### For create a new key-value to in memory:
-Use this command on terminal: `curl -X POST 'http://localhost:8080/set?key=keyData&value=valueData'`
-If you want to use the browser, you can go to the following address: `http://localhost:8080/set?key=keyData&value=valueData`
+Use this command on terminal: `curl -X POST 'http://localhost:8080/api/keyValues?key={keyData}&value={valueData}'`
+If you want to use the browser or Postman, you can go to the following address: `http://localhost:8080/api/keyValues?key={keyData}&value={valueData}`
 
 ### For get a specific data from memory:
-Use this command on terminal: `curl 'http://localhost:8080/get?key=keyData'`
-If you want to use the browser, you can go to the following address: `http://localhost:8080/get?key=keyData`
+Use this command on terminal: `curl 'http://localhost:8080/api/key/:keyData'`
+If you want to use the browser or Postman, you can go to the following address: `http://localhost:8080/api/key/:keyData`
 
 Run tests
 ```bash

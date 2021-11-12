@@ -17,7 +17,7 @@ func Test_ShouldServiceSetNewKeyValue(t *testing.T) {
 	keyValueRepository := repository.NewKeyValueStoreRepository(map[string]string{})
 	keyValueService := NewService(keyValueRepository)
 
-	_, err := http.NewRequest("SET", "/set", io.Reader(nil))
+	_, err := http.NewRequest("POST", "/api/keyValues", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -34,7 +34,7 @@ func Test_ShouldServiceNotSetNewKeyValue(t *testing.T) {
 	keyValueRepository := repository.NewKeyValueStoreRepository(map[string]string{testKey: testValue})
 	keyValueService := NewService(keyValueRepository)
 
-	_, err := http.NewRequest("SET", "/set", io.Reader(nil))
+	_, err := http.NewRequest("POST", "/api/keyValues", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -49,7 +49,7 @@ func Test_ShouldServiceGetKeyValue(t *testing.T) {
 	keyValueRepository := repository.NewKeyValueStoreRepository(map[string]string{testKey: testValue})
 	keyValueService := NewService(keyValueRepository)
 
-	_, err := http.NewRequest("GET", "/get", io.Reader(nil))
+	_, err := http.NewRequest("GET", "/api/key/", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -67,7 +67,7 @@ func Test_ShouldServiceNotGetKeyValue(t *testing.T) {
 	keyValueRepository := repository.NewKeyValueStoreRepository(map[string]string{})
 	keyValueService := NewService(keyValueRepository)
 
-	_, err := http.NewRequest("GET", "/get", io.Reader(nil))
+	_, err := http.NewRequest("GET", "/api/key/", io.Reader(nil))
 	if err != nil {
 		t.Fatal(err)
 	}

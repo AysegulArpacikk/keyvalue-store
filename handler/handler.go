@@ -2,9 +2,9 @@ package handler
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"regexp"
+	"strings"
 	"ys-keyvalue-store/errors"
 	"ys-keyvalue-store/service"
 )
@@ -30,12 +30,7 @@ func NewHandler(keyValueService service.Service) KeyValueHandler {
 // Then it goes to the service layer and returns the response.
 // If no error is returned, it returns the desired key-value and StatusOK.
 func (h *handler) GetKeyValueHandler(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
-	if err != nil {
-		log.Fatalf("An accurred errors when parse the form while get key-value '%d', '%s'", http.StatusBadRequest, err)
-	}
-	key := r.Form.Get("key")
-
+	key := strings.TrimPrefix(r.URL.Path, "/api/key/")
 	status := http.StatusOK
 	value, getKeyValueErr := h.keyValueService.GetKey(key)
 	if getKeyValueErr != nil {
@@ -81,9 +76,9 @@ func (h *handler) SetKeyValueHandler(w http.ResponseWriter, r *http.Request) {
 // Request and ResponseRecorder.
 func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "application/json")
-	if r.URL.Path == "/set" && r.Method == http.MethodPost {
+	if r.URL.Path == "/api/keyValues" && r.Method == http.MethodPost {
 		h.SetKeyValueHandler(w, r)
-	} else if regexp.MustCompile(`/get[a-zA-Z]+`).MatchString(r.URL.Path) && r.Method == http.MethodGet {
+	} else if regexp.MustCompile(`/api/key/[a-zA-Z]+`).MatchString(r.URL.Path) && r.Method == http.MethodGet {
 		h.GetKeyValueHandler(w, r)
 	} else {
 		http.Error(w, fmt.Sprintf("expect method GET, DELETE or POST at /key/, got %v", r.Method), http.StatusMethodNotAllowed)

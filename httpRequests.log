@@ -19,3 +19,43 @@
 2021/11/12 01:58:02 GET		/set?key=yemek&value=sepeti		127.0.0.1:56838		70.061µs
 2021/11/12 01:58:13 GET		/get?key=yemek		127.0.0.1:56846		38.072µs
 2021/11/12 01:58:21 GET		/get?key=den		127.0.0.1:56854		106.392µs
+2021/11/12 03:09:16 invalid character 'g' after object key
+2021/11/12 03:09:45 GET		/get/den		127.0.0.1:50822		13.882µs
+2021/11/12 03:10:13 GET		/api/keyValue/den		127.0.0.1:50822		77.473µs
+2021/11/12 03:10:16 'tmp/1636675816-data.json' file created
+2021/11/12 03:10:16 '{}' data writed to file 'tmp/1636675816-data.json' file
+2021/11/12 03:11:05 GET		/api/keyValue/den		127.0.0.1:50822		77.852µs
+2021/11/12 03:11:16 'tmp/1636675876-data.json' file created
+2021/11/12 03:11:16 '{}' data writed to file 'tmp/1636675876-data.json' file
+2021/11/12 03:11:40 http: superfluous response.WriteHeader call from ys-keyvalue-store/handler.(*handler).SetKeyValueHandler (handler.go:76)
+2021/11/12 03:11:40 POST		/api/keyValues?key=a&value=b		127.0.0.1:50822		71.481µs
+2021/11/12 03:12:16 'tmp/1636675936-data.json' file created
+2021/11/12 03:12:16 '{"a":"b"}' data writed to file 'tmp/1636675936-data.json' file
+2021/11/12 03:13:16 'tmp/1636675996-data.json' file created
+2021/11/12 03:13:16 '{"a":"b"}' data writed to file 'tmp/1636675996-data.json' file
+2021/11/12 03:13:18 GET		/api/keyValue/a		127.0.0.1:50822		29.315µs
+2021/11/12 03:13:54 GET		/api/keyValue/a		127.0.0.1:50822		202.458µs
+2021/11/12 03:16:02 GET		/api/keyValue/a		127.0.0.1:50856		16.315µs
+2021/11/12 03:17:14 'tmp/1636676234-data.json' file created
+2021/11/12 03:17:14 GET		/api/key/a		127.0.0.1:50856		1m3.15907973s
+2021/11/12 03:17:14 '{"a":"b"}' data writed to file 'tmp/1636676234-data.json' file
+2021/11/12 03:17:42 GET		/api/key/a		127.0.0.1:50874		6.211726581s
+2021/11/12 03:18:30 'tmp/1636676310-data.json' file created
+2021/11/12 03:18:30 '{"a":"b"}' data writed to file 'tmp/1636676310-data.json' file
+2021/11/12 03:19:43 GET		/get/a		127.0.0.1:50878		22.254µs
+2021/11/12 03:19:51 GET		/api/key/a		127.0.0.1:50880		87.906µs
+2021/11/12 03:20:08 GET		/api/keyValues/a&y		127.0.0.1:50882		8.372µs
+2021/11/12 03:20:21 'tmp/1636676421-data.json' file created
+2021/11/12 03:20:21 '{"a":"b"}' data writed to file 'tmp/1636676421-data.json' file
+2021/11/12 03:20:26 GET		/api/keyValues/key=yemek&value=sepeti		127.0.0.1:50884		18.748µs
+2021/11/12 03:20:36 GET		/api/keyValues?key=yemek&value=sepeti		127.0.0.1:50886		91.158µs
+2021/11/12 03:20:46 http: superfluous response.WriteHeader call from ys-keyvalue-store/handler.(*handler).SetKeyValueHandler (handler.go:71)
+2021/11/12 03:20:46 POST		/api/keyValues?key=yemek&value=sepeti		127.0.0.1:50888		201.035µs
+2021/11/12 03:21:21 'tmp/1636676481-data.json' file created
+2021/11/12 03:21:21 '{"a":"b","yemek":"sepeti"}' data writed to file 'tmp/1636676481-data.json' file
+2021/11/12 03:22:21 'tmp/1636676541-data.json' file created
+2021/11/12 03:22:21 '{"a":"b","yemek":"sepeti"}' data writed to file 'tmp/1636676541-data.json' file
+2021/11/12 03:23:21 'tmp/1636676601-data.json' file created
+2021/11/12 03:23:21 '{"a":"b","yemek":"sepeti"}' data writed to file 'tmp/1636676601-data.json' file
+2021/11/12 03:24:10 GET		/api/key/yemek		127.0.0.1:50892		84.332µs
+2021/11/12 03:24:20 GET		/api/key/yemek		127.0.0.1:50894		54.239µs

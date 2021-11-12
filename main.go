@@ -34,8 +34,8 @@ func main() {
 	go keyValueService.SaveKeyValuesToFile()
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/get", keyValueHandler.GetKeyValueHandler)
-	mux.HandleFunc("/set", keyValueHandler.SetKeyValueHandler)
+	mux.Handle("/api/key/", keyValueHandler)
+	mux.Handle("/api/keyValues", keyValueHandler)
 
 	log.Fatal(http.ListenAndServe(*httpAddr, logger.RequestLogger(mux))) //nolint
 }
