@@ -30,7 +30,7 @@ func Test_ShouldSetNewKeyValue(t *testing.T) {
 
 	recorder := httptest.NewRecorder()
 
-	setKeyError := keyValueService.SetKey(testKey, testValue)
+	setKeyError := keyValueService.SetKeyValue(testKey, testValue)
 	if setKeyError != nil {
 		log.Fatalf("Error: '%s'", setKeyError)
 	}
@@ -57,7 +57,7 @@ func Test_ShouldNotSetNewKeyValueBecauseKeyValueAlreadyExist(t *testing.T) {
 
 	recorder := httptest.NewRecorder()
 
-	setKeyError := keyValueService.SetKey(testKey, testValue)
+	setKeyError := keyValueService.SetKeyValue(testKey, testValue)
 
 	handle := http.HandlerFunc(keyValueHandler.SetKeyValueHandler)
 	handle.ServeHTTP(recorder, request)
@@ -80,7 +80,7 @@ func Test_ShouldGetKeyValue(t *testing.T) {
 
 	recorder := httptest.NewRecorder()
 
-	value, getKeyError := keyValueService.GetKey(testKey)
+	value, getKeyError := keyValueService.GetKeyValue(testKey)
 	if getKeyError != nil {
 		log.Fatalln("Error")
 	}
@@ -108,7 +108,7 @@ func Test_ShouldNotGetKeyValueBecauseKeyValueNotFound(t *testing.T) {
 
 	recorder := httptest.NewRecorder()
 
-	_, getKeyError := keyValueService.GetKey(testKey)
+	_, getKeyError := keyValueService.GetKeyValue(testKey)
 
 	handle := http.HandlerFunc(keyValueHandler.GetKeyValueHandler)
 	handle.ServeHTTP(recorder, request)

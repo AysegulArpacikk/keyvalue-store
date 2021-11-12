@@ -32,7 +32,7 @@ func NewHandler(keyValueService service.Service) KeyValueHandler {
 func (h *handler) GetKeyValueHandler(w http.ResponseWriter, r *http.Request) {
 	key := strings.TrimPrefix(r.URL.Path, "/api/key/")
 	status := http.StatusOK
-	value, getKeyValueErr := h.keyValueService.GetKey(key)
+	value, getKeyValueErr := h.keyValueService.GetKeyValue(key)
 	if getKeyValueErr != nil {
 		if getKeyValueErr != errors.ErrorValueNotFound {
 			status = http.StatusInternalServerError //nolint
@@ -56,7 +56,7 @@ func (h *handler) SetKeyValueHandler(w http.ResponseWriter, r *http.Request) {
 	value := r.Form.Get("value")
 
 	status := http.StatusOK
-	setErr := h.keyValueService.SetKey(key, value)
+	setErr := h.keyValueService.SetKeyValue(key, value)
 	if setErr != nil {
 		if setErr != errors.ErrorKeyValueAlreadyExist {
 			status = http.StatusInternalServerError

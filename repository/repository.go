@@ -43,7 +43,7 @@ func (k *KeyValueStore) SetKey(key, value string) error {
 func (k *KeyValueStore) LoadKeyValueStoreToMemory(file string) error {
 	jsonFile, err := os.Open(file)
 	if err != nil {
-		log.Fatalf("os.Open failed with '%s'\n", err)
+		log.Fatalf("Open the failed: '%s'\n", err)
 	}
 	fmt.Printf("Successfully Opened '%s'", file)
 	defer jsonFile.Close()

@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// RequestLogger logs http requests in the httpRequests.log file.
 func RequestLogger(targetMux http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()

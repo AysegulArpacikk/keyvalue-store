@@ -22,7 +22,7 @@ func Test_ShouldServiceSetNewKeyValue(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	setKeyError := keyValueService.SetKey(testKey, testValue)
+	setKeyError := keyValueService.SetKeyValue(testKey, testValue)
 	if setKeyError != nil {
 		log.Fatalf("Error: '%s'", setKeyError)
 	}
@@ -39,7 +39,7 @@ func Test_ShouldServiceNotSetNewKeyValue(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	setKeyError := keyValueService.SetKey(testKey, testValue)
+	setKeyError := keyValueService.SetKeyValue(testKey, testValue)
 
 	assert.NotNil(t, setKeyError)
 	assert.EqualError(t, setKeyError, "key/value already exist ")
@@ -54,7 +54,7 @@ func Test_ShouldServiceGetKeyValue(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	value, getKeyError := keyValueService.GetKey(testKey)
+	value, getKeyError := keyValueService.GetKeyValue(testKey)
 	if getKeyError != nil {
 		log.Fatalln("Error")
 	}
@@ -72,7 +72,7 @@ func Test_ShouldServiceNotGetKeyValue(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	_, getKeyError := keyValueService.GetKey(testKey)
+	_, getKeyError := keyValueService.GetKeyValue(testKey)
 
 	assert.NotNil(t, getKeyError)
 	assert.EqualError(t, getKeyError, "value not found ")
