@@ -59,3 +59,4 @@
 2021/11/12 03:23:21 '{"a":"b","yemek":"sepeti"}' data writed to file 'tmp/1636676601-data.json' file
 2021/11/12 03:24:10 GET		/api/key/yemek		127.0.0.1:50892		84.332µs
 2021/11/12 03:24:20 GET		/api/key/yemek		127.0.0.1:50894		54.239µs
+2021/11/12 08:29:22 GET		/api/key/yemek		127.0.0.1:55016		51.048µs
