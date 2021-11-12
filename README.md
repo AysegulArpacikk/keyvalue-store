@@ -41,6 +41,11 @@ Run tests
 make test
 ```
 
+Build with docker
+```bash
+sudo docker build -t ys-keyvalue-store .
+```
+
 For lint run this file on project root directory:
 `lint.sh`
 
