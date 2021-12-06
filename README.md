@@ -1,4 +1,4 @@
-# Yemeksepeti In Memory Key Value Store Project with Golang
+# In Memory Key Value Store Project with Golang
 
 ## Project Details
 

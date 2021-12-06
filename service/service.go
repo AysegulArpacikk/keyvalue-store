@@ -13,7 +13,7 @@ import (
 
 type Service interface {
 	GetKeyValue(string) (string, error)
-	SetKeyValue(string, string) error
+	SetKeyValue(*map[string]string) error
 	SaveKeyValuesToFile()
 	LoadKeyValueStoreToMemory()
 }
@@ -40,12 +40,15 @@ func (s *service) GetKeyValue(key string) (string, error) {
 // SetKeyValue sets key and values to the store.
 // First, it checks the store for the same key-value.
 // Otherwise, it saves the new key-value to store.
-func (s *service) SetKeyValue(key, value string) error {
-	keyValue, _ := s.GetKeyValue(key)
-	if keyValue != "" {
-		return errors.ErrorKeyValueAlreadyExist
+func (s *service) SetKeyValue(keyValue *map[string]string) error {
+	for key, _ := range *keyValue {
+		key1, _ := s.GetKeyValue(key)
+		if key1 != "" {
+			return errors.ErrorKeyValueAlreadyExist
+		}
 	}
-	err := s.keyValueRepository.SetKey(key, value)
+
+	err := s.keyValueRepository.SetKey(keyValue)
 	if err != nil {
 		return err
 	}

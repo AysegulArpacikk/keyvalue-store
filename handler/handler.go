@@ -1,7 +1,9 @@
 package handler
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strings"
@@ -10,7 +12,7 @@ import (
 )
 
 type KeyValueHandler interface {
-	GetKeyValueHandler(http.ResponseWriter, *http.Request)
+	GetKeyValueHandler(http.ResponseWriter, *http.Request) error
 	SetKeyValueHandler(http.ResponseWriter, *http.Request)
 	ServeHTTP(http.ResponseWriter, *http.Request)
 }
@@ -29,21 +31,35 @@ func NewHandler(keyValueService service.Service) KeyValueHandler {
 // The status was defined as 200 by default.
 // Then it goes to the service layer and returns the response.
 // If no error is returned, it returns the desired key-value and StatusOK.
-func (h *handler) GetKeyValueHandler(w http.ResponseWriter, r *http.Request) {
+func (h *handler) GetKeyValueHandler(w http.ResponseWriter, r *http.Request) error {
 	key := strings.TrimPrefix(r.URL.Path, "/api/key/")
 	status := http.StatusOK
+
+	var response map[string]string
+
 	value, getKeyValueErr := h.keyValueService.GetKeyValue(key)
 	if getKeyValueErr != nil {
 		if getKeyValueErr != errors.ErrorValueNotFound {
 			status = http.StatusInternalServerError //nolint
+			response = map[string]string{
+				"": "",
+			}
 		} else {
 			getKeyValueErr = errors.ErrorValueNotFound
 			status = http.StatusNotFound
+			response = map[string]string{
+				"": "",
+			}
 			fmt.Fprintf(w, "Error = %s, Status = %d", getKeyValueErr, status)
 		}
 	} else {
-		fmt.Fprintf(w, "Key= %q, Value = %q, Status = %d", key, value, status)
+		response = map[string]string{
+			key: value,
+		}
+		//fmt.Fprintf(w, "Key= %q, Value = %q, Status = %d", key, value, status)
 	}
+
+	return json.NewEncoder(w).Encode(response)
 }
 
 // SetKeyValueHandler creates a new key-value pair.
@@ -52,11 +68,18 @@ func (h *handler) GetKeyValueHandler(w http.ResponseWriter, r *http.Request) {
 func (h *handler) SetKeyValueHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm() //nolint
 
-	key := r.Form.Get("key")
-	value := r.Form.Get("value")
+	keyValue := map[string]string{}
+	reqBody, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		return
+	}
+	unmarshalErr := json.Unmarshal(reqBody, &keyValue)
+	if unmarshalErr != nil {
+		return
+	}
 
 	status := http.StatusOK
-	setErr := h.keyValueService.SetKeyValue(key, value)
+	setErr := h.keyValueService.SetKeyValue(&keyValue)
 	if setErr != nil {
 		if setErr != errors.ErrorKeyValueAlreadyExist {
 			status = http.StatusInternalServerError

@@ -2,6 +2,7 @@ package repository
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -13,30 +14,41 @@ import (
 
 type KeyValueRepository interface {
 	GetKey(string) (string, error)
-	SetKey(string, string) error
+	SetKey(*map[string]string) error
 	SaveKeyValuesToFile() error
 	LoadKeyValueStoreToMemory(string) error
 }
 
 // KeyValueStore structure was created with map.
 type KeyValueStore struct {
-	store map[string]string
+	store []*map[string]string
 }
 
-func NewKeyValueStoreRepository(keyValue map[string]string) *KeyValueStore {
+func NewKeyValueStoreRepository(keyValue []*map[string]string) *KeyValueStore {
 	store := &KeyValueStore{store: keyValue}
 	return store
 }
 
 // GetKey gets value by key from in memory
 func (k *KeyValueStore) GetKey(key string) (string, error) {
-	return k.store[key], nil
+	for key1, _ := range k.store {
+		for key2, value := range *k.store[key1] {
+			if key2 == key {
+				return value, nil
+			}
+		}
+	}
+	return "", errors.New("key-value not found")
 }
 
 // SetKey sets key and value to in memory
-func (k *KeyValueStore) SetKey(key, value string) error {
-	k.store[key] = value
+func (k *KeyValueStore) SetKey(keyValue *map[string]string) error {
+	k.store = k.addKeyValueData(keyValue)
 	return nil
+}
+
+func (k *KeyValueStore) addKeyValueData(keyValue *map[string]string) []*map[string]string {
+	return append(k.store, keyValue)
 }
 
 // LoadKeyValueStoreToMemory loads the key-values saved in the file into memory.

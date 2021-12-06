@@ -61,3 +61,11 @@
 2021/11/12 03:24:20 GET		/api/key/yemek		127.0.0.1:50894		54.239µs
 2021/11/12 08:29:22 GET		/api/key/yemek		127.0.0.1:55016		51.048µs
 2021/11/12 08:31:35 GET		/api/key/yemek		127.0.0.1:55034		99.947µs
+2021/12/06 13:38:52 http: superfluous response.WriteHeader call from ys-keyvalue-store/handler.(*handler).SetKeyValueHandler (handler.go:71)
+2021/12/06 13:38:52 POST		/api/keyValues?key=keyData1&value=valueData1		127.0.0.1:52185		1.692667ms
+2021/12/06 13:39:04 GET		/api/key/keyData1		127.0.0.1:52208		2.124292ms
+2021/12/06 13:39:16 GET		/api/key/keyData12		127.0.0.1:52231		559.583µs
+2021/12/06 13:39:21 'tmp/1638787161-data.json' file created
+2021/12/06 13:39:21 '{":keyData":":valueData","a":"b","keyData1":"valueData1","keyData12":"valueData12","yemek":"sepeti","yemekk":"sepeti"}' data writed to file 'tmp/1638787161-data.json' file
+2021/12/06 13:40:05 GET		/api/key/keyData1		127.0.0.1:52317		128µs
+2021/12/06 13:40:16 GET		/api/key/keyData1		127.0.0.1:52341		190.208µs
