@@ -27,7 +27,7 @@ func main() {
 	log.SetOutput(logFile)
 	defer logFile.Close()
 
-	keyValueRepository := repository.NewKeyValueStoreRepository(map[string]string{})
+	keyValueRepository := repository.NewKeyValueStoreRepository([]*map[string]string{})
 	keyValueService := service.NewService(keyValueRepository)
 	keyValueHandler := handler.NewHandler(keyValueService)
 	keyValueService.LoadKeyValueStoreToMemory()
