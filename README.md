@@ -28,6 +28,11 @@ Run the project
 make run
 ```
 
+### Heroku
+
+Heroku
+The project has been deployed to Heroku. Heroku link: [https://ys-keyvalue-store.herokuapp.com/](https://ys-keyvalue-store.herokuapp.com/)
+
 ### For create a new key-value to in memory:
 Use this command on terminal: `curl -X POST 'http://localhost:8080/api/keyValues?key=keyData&value=valueData'`
 If you want to use the browser or Postman, you can go to the following address: `http://localhost:8080/api/keyValues?key=keyData&value=valueData`
