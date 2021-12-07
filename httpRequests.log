@@ -69,3 +69,16 @@
 2021/12/06 13:39:21 '{":keyData":":valueData","a":"b","keyData1":"valueData1","keyData12":"valueData12","yemek":"sepeti","yemekk":"sepeti"}' data writed to file 'tmp/1638787161-data.json' file
 2021/12/06 13:40:05 GET		/api/key/keyData1		127.0.0.1:52317		128µs
 2021/12/06 13:40:16 GET		/api/key/keyData1		127.0.0.1:52341		190.208µs
+2021/12/06 23:57:40 json: cannot unmarshal object into Go value of type []*map[string]string
+2021/12/06 23:58:27 GET		/api/keyValues		127.0.0.1:63930		943.083µs
+2021/12/06 23:58:33 http: superfluous response.WriteHeader call from ys-keyvalue-store/handler.(*handler).SetKeyValueHandler (handler.go:94)
+2021/12/06 23:58:33 POST		/api/keyValues		127.0.0.1:63930		743.959µs
+2021/12/06 23:58:40 'tmp/1638824320-data.json' file created
+2021/12/06 23:58:40 '[{"key4":"value4"}]' data writed to file 'tmp/1638824320-data.json' file
+2021/12/06 23:58:53 GET		/api/key/key4		127.0.0.1:63930		142.5µs
+2021/12/06 23:59:40 'tmp/1638824380-data.json' file created
+2021/12/06 23:59:40 '[{"key4":"value4"}]' data writed to file 'tmp/1638824380-data.json' file
+2021/12/07 00:00:40 'tmp/1638824440-data.json' file created
+2021/12/07 00:00:40 '[{"key4":"value4"}]' data writed to file 'tmp/1638824440-data.json' file
+2021/12/07 00:01:40 'tmp/1638824500-data.json' file created
+2021/12/07 00:01:40 '[{"key4":"value4"}]' data writed to file 'tmp/1638824500-data.json' file
